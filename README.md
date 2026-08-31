@@ -24,11 +24,13 @@ with one config setting. Targets **.NET 10**.
 
 | Method | Route | Purpose |
 | --- | --- | --- |
-| `GET` | `/forecast/{city}` | Returns the (cached) forecast plus `sourceCalls`, the number of real upstream calls so far |
-| `DELETE` | `/forecast/{city}` | Evicts the city's cache entry so the next GET refetches |
+| `GET` | `/api/v1/forecast/{city}` | Returns the (cached) forecast plus `sourceCalls`, the number of real upstream calls so far |
+| `DELETE` | `/api/v1/forecast/{city}` | Evicts the city's cache entry so the next GET refetches |
+| `GET` | `/health/live` | Liveness probe — no downstream checks |
+| `GET` | `/health/ready` | Readiness probe — runs registered health checks |
 
-Call `GET /forecast/Tbilisi` twice: the first response is slow and `sourceCalls` is `1`; the second
-is instant and `sourceCalls` stays `1`.
+Call `GET /api/v1/forecast/Tbilisi` twice: the first response is slow and `sourceCalls` is `1`; the
+second is instant and `sourceCalls` stays `1`.
 
 ## Running
 
